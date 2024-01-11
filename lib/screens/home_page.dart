@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:weather/utils/custom_text.dart';
 import 'package:weather/utils/image_path.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool _search = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -57,7 +63,11 @@ class HomePage extends StatelessWidget {
                   ),
                   const Spacer(),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        _search= !_search;
+                      });
+                    },
                     icon: const Icon(
                       Icons.search,
                       size: 30,
@@ -66,6 +76,29 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
+            _search == true ? 
+            Positioned(
+              top: 55,
+              left: 20,
+              right: 20,
+              child: Container(
+                height: 50,
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.white
+                      )
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.white
+                      )
+                    )
+                  ),
+                ),
+              ),
+            ) : SizedBox.shrink(),
             Align(
               alignment: Alignment(0, -0.7),
               child: Image.asset(imagePath[0]),
@@ -74,7 +107,7 @@ class HomePage extends StatelessWidget {
               alignment: Alignment(0, 0),
               child: Container(
                 height: 130,
-                width: 130,
+              
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -90,7 +123,141 @@ class HomePage extends StatelessWidget {
                       fw: FontWeight.w600,
                       size: 26,
                     ),
-                    CommonText(data: DateTime.now().toString(), color: Colors.white,)
+                    CommonText(
+                      data: DateTime.now().toString(),
+                      color: Colors.white,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment(0, 0.55),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                height: 180,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/img/temperature-high.png',
+                              height: 55,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CommonText(
+                                  data: 'Temp Max',
+                                  color: Colors.white,
+                                  size: 14,
+                                  fw: FontWeight.w600,
+                                ),
+                                CommonText(
+                                  data: '21 C',
+                                  color: Colors.white,
+                                  size: 14,
+                                  fw: FontWeight.w600,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/img/temperature-low.png',
+                              height: 55,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CommonText(
+                                  data: 'Temp Min',
+                                  color: Colors.white,
+                                  size: 14,
+                                  fw: FontWeight.w600,
+                                ),
+                                CommonText(
+                                  data: '19 C',
+                                  color: Colors.white,
+                                  size: 14,
+                                  fw: FontWeight.w600,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                    const Divider(
+                      color: Colors.white,
+                      thickness: 2,
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/img/sun.png',
+                              height: 55,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CommonText(
+                                  data: 'Sun Rise',
+                                  color: Colors.white,
+                                  size: 14,
+                                  fw: FontWeight.w600,
+                                ),
+                                CommonText(
+                                  data: '21 C',
+                                  color: Colors.white,
+                                  size: 14,
+                                  fw: FontWeight.w600,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/img/moon.png',
+                              height: 55,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CommonText(
+                                  data: 'Sun Set',
+                                  color: Colors.white,
+                                  size: 14,
+                                  fw: FontWeight.w600,
+                                ),
+                                CommonText(
+                                  data: '19 C',
+                                  color: Colors.white,
+                                  size: 14,
+                                  fw: FontWeight.w600,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),

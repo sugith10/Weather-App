@@ -37,9 +37,10 @@ flutter:
     - assets/img/few-clouds.png
     - assets/img/snow.png
     - assets/img/mist.png
-    - assets/json/
-    - assets/fonts/
-
+    - assets/img/temperature-high.png
+    - assets/img/temperature-low.png
+    - assets/img/moon.png
+    - assets/img/sun.png
 
 
   fonts:
